@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="596" viewBox="0 0 1120 596" role="img" aria-labelledby="title desc">
+  <title id="title">ER-диаграмма службы такси</title>
+  <desc id="desc">Один пассажир может иметь от нуля до многих заказов. Каждый заказ связан с одним пассажиром по ride_orders.passenger_id.</desc>
+  <defs>
+    <style>
+      text { font-family: "Segoe UI", Arial, sans-serif; fill: #16283a; }
+      .title { font-size: 34px; font-weight: 700; }
+      .sub { font-size: 17px; fill: #42596e; }
+      .table { font-size: 22px; font-weight: 700; fill: #ffffff; }
+      .field { font-size: 17px; font-weight: 600; }
+      .type { font-size: 16px; fill: #42596e; }
+      .key { font-size: 14px; font-weight: 700; fill: #075763; }
+      .line { stroke: #c4d2de; }
+      .relation { stroke: #1f6670; stroke-width: 2.5; fill: none; }
+    </style>
+  </defs>
+  <rect width="1120" height="596" fill="#f4f7fa"/>
+  <text x="56" y="65" class="title">Служба такси · ER-диаграмма</text>
+  <text x="56" y="97" class="sub">PostgreSQL · вариант 34 · связь «один ко многим»</text>
+
+  <rect x="56" y="145" width="345" height="187" rx="8" fill="#ffffff" stroke="#b7c8d7"/>
+  <path d="M56 192V153a8 8 0 0 1 8-8h329a8 8 0 0 1 8 8v39Z" fill="#0f5864"/>
+  <text x="76" y="176" class="table">passengers</text>
+  <path class="line" d="M56 239h345m-345 46h345"/>
+  <text x="76" y="222" class="field">id</text>
+  <text x="181" y="222" class="type">bigint</text>
+  <text x="352" y="221" class="key">PK</text>
+  <text x="76" y="269" class="field">full_name</text>
+  <text x="181" y="269" class="type">varchar(100)</text>
+  <text x="76" y="315" class="field">phone</text>
+  <text x="181" y="315" class="type">varchar(12)</text>
+  <text x="320" y="314" class="key">UNIQUE</text>
+
+  <rect x="632" y="145" width="432" height="415" rx="8" fill="#ffffff" stroke="#b7c8d7"/>
+  <path d="M632 192v-39a8 8 0 0 1 8-8h416a8 8 0 0 1 8 8v39Z" fill="#0f5864"/>
+  <text x="652" y="176" class="table">ride_orders</text>
+  <path class="line" d="M632 239h432m-432 46h432m-432 46h432m-432 46h432m-432 46h432m-432 46h432m-432 46h432"/>
+  <text x="652" y="222" class="field">id</text>
+  <text x="824" y="222" class="type">bigint</text>
+  <text x="1019" y="221" class="key">PK</text>
+  <text x="652" y="269" class="field">passenger_id</text>
+  <text x="824" y="269" class="type">bigint</text>
+  <text x="1019" y="268" class="key">FK</text>
+  <text x="652" y="315" class="field">pickup_address</text>
+  <text x="824" y="315" class="type">varchar(150)</text>
+  <text x="652" y="361" class="field">dropoff_address</text>
+  <text x="824" y="361" class="type">varchar(150)</text>
+  <text x="652" y="407" class="field">pickup_at</text>
+  <text x="824" y="407" class="type">timestamp (без часового пояса)</text>
+  <text x="652" y="453" class="field">fare</text>
+  <text x="824" y="453" class="type">numeric(9, 2)</text>
+  <text x="652" y="499" class="field">status</text>
+  <text x="824" y="499" class="type">varchar(16)</text>
+  <text x="652" y="545" class="field">version</text>
+  <text x="824" y="545" class="type">bigint</text>
+
+  <path class="relation" d="M401 216h114v46h117m-219-55v18m219 25-20 12 20 12"/>
+  <circle cx="602" cy="262" r="5" fill="#f4f7fa" stroke="#1f6670" stroke-width="2.5"/>
+  <text x="424" y="205" class="key">1</text>
+  <text x="572" y="245" class="key">0..*</text>
+
+  <text x="56" y="384" class="field">Обязательная связь для каждого заказа</text>
+  <text x="56" y="415" class="sub">У пассажира может быть несколько заказов.</text>
+  <text x="56" y="445" class="sub">ON DELETE RESTRICT защищает связанные записи.</text>
+  <text x="56" y="499" class="sub">PK — первичный ключ · FK — внешний ключ</text>
+  <text x="56" y="529" class="sub">Все столбцы имеют ограничение NOT NULL.</text>
+</svg>

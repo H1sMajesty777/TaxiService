@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: taxi
+      POSTGRES_USER: taxi
+      POSTGRES_PASSWORD: taxi_local
+    ports:
+      - "127.0.0.1:5434:5432"
+    volumes:
+      - taxi_data:/var/lib/postgresql/data
+      - ./sql/01-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./sql/02-demo-data.sql:/docker-entrypoint-initdb.d/02-demo-data.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U taxi -d taxi"]
+      interval: 3s
+      timeout: 3s
+      retries: 15
+volumes:
+  taxi_data:
