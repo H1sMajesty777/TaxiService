@@ -1,0 +1,2 @@
+externalCode,passengerId,tariffId,pickupAddress,dropoffAddress,pickupAt,fare,status,childSeat,tags
+DEMO-TRAIN-01,1,00000000-0000-4000-a000-000000000002,"ул. Лесная, 5","Казанский вокзал",2026-12-01T09:30,940.00,NEW,true,вокзал|семья

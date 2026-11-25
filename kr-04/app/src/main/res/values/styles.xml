@@ -1,0 +1,11 @@
+<resources>
+    <style name="TaxiTheme" parent="android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:colorAccent">#146653</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">#EDF2EF</item>
+        <item name="android:navigationBarColor">#EDF2EF</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:windowBackground">#EDF2EF</item>
+    </style>
+</resources>

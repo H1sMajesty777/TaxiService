@@ -1,0 +1,54 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Такси: подготовить .env",
+            "type": "shell",
+            "command": "& ./scripts/Initialize-Local.ps1",
+            "windows": {"options": {"shell": {"executable": "powershell.exe", "args": ["-NoProfile", "-Command"]}}},
+            "problemMatcher": []
+        },
+        {
+            "label": "Такси: PostgreSQL",
+            "type": "shell",
+            "command": "docker compose up -d --wait postgres",
+            "problemMatcher": []
+        },
+        {
+            "label": "Такси: сборка и тесты Maven",
+            "type": "shell",
+            "command": "mvn -B verify",
+            "group": {"kind": "build", "isDefault": true},
+            "problemMatcher": []
+        },
+        {
+            "label": "Такси: консоль",
+            "type": "shell",
+            "command": "mvn -f kr-01/pom.xml -q compile exec:java",
+            "problemMatcher": []
+        },
+        {
+            "label": "Такси: JavaFX",
+            "type": "shell",
+            "command": "mvn -q -pl kr-01 install; if ($LASTEXITCODE -eq 0) { $env:TAXI_DB_PASSWORD='taxi_local'; & ./scripts/Use-TaxiEnvironment.ps1; mvn -q -f kr-02/pom.xml javafx:run }",
+            "windows": {"options": {"shell": {"executable": "powershell.exe", "args": ["-NoProfile", "-Command"]}}},
+            "linux": {"command": "mvn -q -pl kr-01 install && TAXI_DB_PASSWORD=taxi_local mvn -q -f kr-02/pom.xml javafx:run"},
+            "osx": {"command": "mvn -q -pl kr-01 install && TAXI_DB_PASSWORD=taxi_local mvn -q -f kr-02/pom.xml javafx:run"},
+            "problemMatcher": []
+        },
+        {
+            "label": "Такси: backend и PostgreSQL",
+            "type": "shell",
+            "command": "docker compose up -d --build --wait",
+            "problemMatcher": []
+        },
+        {
+            "label": "Такси: Android тесты и APK",
+            "type": "shell",
+            "command": "./gradlew testDebugUnitTest assembleDebug",
+            "windows": {"command": ".\\gradlew.bat testDebugUnitTest assembleDebug"},
+            "options": {"cwd": "${workspaceFolder}/kr-04"},
+            "problemMatcher": []
+        }
+    ]
+}

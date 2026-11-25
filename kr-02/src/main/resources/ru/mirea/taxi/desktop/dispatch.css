@@ -1,0 +1,56 @@
+.root {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-background-color: #f1f5f5;
+}
+.masthead {
+    -fx-background-color: #12383e;
+    -fx-padding: 21px 26px;
+}
+.page-title {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+.page-subtitle { -fx-text-fill: #d7ebec; }
+.workspace-tabs > .tab-header-area { -fx-padding: 8px 24px 0; }
+.workspace-tabs > .tab-header-area > .tab-header-background { -fx-background-color: #e2ecec; }
+.tab-pane .tab { -fx-padding: 6px 14px; }
+.tab-pane .tab:selected { -fx-background-color: #f1f5f5; }
+.workspace { -fx-padding: 19px 24px 14px; }
+.button {
+    -fx-padding: 8px 13px;
+    -fx-cursor: hand;
+    -fx-background-color: white;
+    -fx-background-radius: 6px;
+    -fx-border-color: #c5d5d6;
+    -fx-border-radius: 6px;
+    -fx-text-fill: #143439;
+}
+.button:hover { -fx-background-color: #ddecf0; }
+.button:focused, .text-field:focused, .combo-box:focused, .date-picker:focused {
+    -fx-border-color: #167e86;
+    -fx-border-width: 1px;
+}
+.button:disabled { -fx-opacity: .48; }
+.button.primary { -fx-background-color: #086975; -fx-border-color: #086975; -fx-text-fill: white; }
+.button.primary:hover { -fx-background-color: #07515a; }
+.button.danger { -fx-text-fill: #922e27; }
+.text-field, .combo-box, .date-picker {
+    -fx-background-color: white;
+    -fx-border-color: #c5d5d6;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+.table-view { -fx-border-color: #c5d5d6; -fx-background-color: white; }
+.table-view .column-header { -fx-background-color: #dce9e9; -fx-padding: 9px 3px; }
+.table-view .table-row-cell { -fx-cell-size: 39px; }
+.table-view .table-row-cell:filled:selected { -fx-background-color: #086975; }
+.related, .footer {
+    -fx-text-fill: #3a585c;
+    -fx-padding: 9px 13px;
+}
+.related { -fx-background-color: #e2ecec; -fx-background-radius: 5px; }
+.footer { -fx-border-color: #c5d5d6 transparent transparent transparent; -fx-padding: 8px 24px; }
+.error { -fx-text-fill: #922e27; }
+.ride-form { -fx-pref-width: 520px; }

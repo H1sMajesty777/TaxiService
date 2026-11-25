@@ -16,11 +16,13 @@ import java.util.List;
 import java.util.Optional;
 
 public final class JdbcRideOrderRepository implements RideOrderRepository {
+    // До миграции КР 3 поле archived отсутствует, поэтому выражение вернёт NULL.
     private static final String SELECT_RIDES = """
             SELECT r.id, r.passenger_id, r.pickup_address, r.dropoff_address, r.pickup_at,
                    r.fare, r.status, r.version, p.full_name, p.phone
             FROM ride_orders r
             JOIN passengers p ON p.id = r.passenger_id
+            WHERE (to_jsonb(r) ->> 'archived') IS DISTINCT FROM 'true'
             """;
 
     private final Database database;
@@ -47,7 +49,7 @@ public final class JdbcRideOrderRepository implements RideOrderRepository {
     @Override
     public Optional<RideOrder> findById(long id) {
         try (var connection = database.open();
-             var statement = connection.prepareStatement(SELECT_RIDES + "WHERE r.id = ?")) {
+             var statement = connection.prepareStatement(SELECT_RIDES + "AND r.id = ?")) {
             statement.setLong(1, id);
             try (var rows = statement.executeQuery()) {
                 return rows.next() ? Optional.of(readRide(rows)) : Optional.empty();

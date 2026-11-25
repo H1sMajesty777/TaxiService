@@ -1,0 +1,33 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "КР 1 · консоль",
+            "request": "launch",
+            "mainClass": "ru.mirea.taxi.Main",
+            "projectName": "taxi-console",
+            "cwd": "${workspaceFolder}/kr-01",
+            "envFile": "${workspaceFolder}/.env",
+            "console": "integratedTerminal"
+        },
+        {
+            "type": "java",
+            "name": "КР 2 · JavaFX",
+            "request": "launch",
+            "mainClass": "ru.mirea.taxi.desktop.DesktopLauncher",
+            "projectName": "taxi-desktop",
+            "cwd": "${workspaceFolder}/kr-02",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "КР 3 · Spring Boot (локально)",
+            "request": "launch",
+            "mainClass": "ru.mirea.taxi.backend.TaxiBackend",
+            "projectName": "taxi-backend",
+            "cwd": "${workspaceFolder}/kr-03",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

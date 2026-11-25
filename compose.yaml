@@ -1,0 +1,36 @@
+name: mirea-taxi-course
+services:
+  postgres:
+    extends:
+      file: kr-01/compose.yaml
+      service: postgres
+    environment:
+      POSTGRES_PASSWORD: ${TAXI_DB_PASSWORD:-taxi_local}
+    volumes:
+      - ./kr-01/sql/01-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./kr-01/sql/02-demo-data.sql:/docker-entrypoint-initdb.d/02-demo-data.sql:ro
+  backend:
+    build:
+      context: .
+      dockerfile: kr-03/Dockerfile
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      TAXI_DB_URL: jdbc:postgresql://postgres:5432/taxi
+      TAXI_DB_USER: taxi
+      TAXI_DB_PASSWORD: ${TAXI_DB_PASSWORD:-taxi_local}
+      TAXI_JWT_SECRET: ${TAXI_JWT_SECRET:-}
+      TAXI_ADMIN_EMAIL: ${TAXI_ADMIN_EMAIL:-admin@taxi.example}
+      TAXI_ADMIN_PASSWORD: ${TAXI_ADMIN_PASSWORD:-}
+      SERVER_ADDRESS: 0.0.0.0
+    ports:
+      - "127.0.0.1:${TAXI_HTTP_PORT:-8081}:8081"
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--spider", "http://127.0.0.1:8081/actuator/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 25s
+volumes:
+  taxi_data:

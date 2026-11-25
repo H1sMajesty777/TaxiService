@@ -1,2 +1,4 @@
 * text=auto
 *.xlsx binary
+*.jar binary
+kr-04/gradlew text eol=lf
