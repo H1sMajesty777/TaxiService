@@ -14,7 +14,7 @@ mvn -v
 В палитре команд доступны:
 
 - `Java: Configure Java Runtime` показывает JDK проектов.
-- `Tasks: Run Task` открывает задачи «Такси: PostgreSQL», «Такси: JavaFX», «Такси: backend и PostgreSQL» и «Такси: Android тесты и APK».
+- `Tasks: Run Task` открывает задачи «Такси: PostgreSQL», «Такси: консоль», «Такси: JavaFX», «Такси: backend и PostgreSQL» и «Такси: Android тесты и APK». На Windows задача «Такси: консоль» запускает КР 1 с UTF-8 через [Start-TaxiConsole.ps1](../scripts/Start-TaxiConsole.ps1).
 - `Run and Debug` позволяет запускать КР 1, КР 2 и КР 3 с точками останова. Сначала поднимите PostgreSQL и создайте `.env`.
 
 ## Где ставить первые точки останова

@@ -11,6 +11,8 @@
 
 [Общая архитектура и сквозной сценарий защиты](docs/ARCHITECTURE.md) · [Работа в VS Code](docs/VS-CODE.md) · [Комплект для сдачи](docs/SUBMISSION.md)
 
+[Java с нуля и репетиция защиты КР № 1 и № 2](docs/DEFENSE-KR-01-02.md)
+
 ## Быстрый запуск на Windows
 
 Откройте папку репозитория в VS Code. Для КР 1–3 понадобятся JDK 21, Maven 3.9+ и запущенный Docker Desktop. Для Android — Gradle Wrapper из проекта, Android SDK 35 и эмулятор. Из корня репозитория:
@@ -26,9 +28,10 @@ docker compose ps
 Если нужны только КР 1 и КР 2, достаточно `docker compose up -d --wait postgres`. JavaFX и консоль можно запускать отдельно при работающей базе.
 
 ```powershell
-.\scripts\Use-TaxiEnvironment.ps1
-mvn -q -f kr-01/pom.xml compile exec:java
+.\scripts\Start-TaxiConsole.ps1
 ```
+
+Скрипт готовит UTF-8 в текущем терминале, загружает параметры базы и запускает КР 1. В палитре VS Code можно выбрать **Tasks: Run Task → Такси: консоль**.
 
 В другом терминале:
 

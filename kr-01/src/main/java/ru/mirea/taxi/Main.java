@@ -20,8 +20,13 @@ public final class Main {
         RideOrderService rides = new RideOrderService(new JdbcRideOrderRepository(database), passengers);
         ReportService reports = new ReportService(passengers, rides, new ExcelExporter());
 
-        var output = new PrintStream(System.out, true, StandardCharsets.UTF_8);
-        try (var input = new Scanner(System.in, StandardCharsets.UTF_8)) {
+        var console = System.console();
+        var output = console == null
+                ? new PrintStream(System.out, true, StandardCharsets.UTF_8)
+                : System.out;
+        try (var input = console == null
+                ? new Scanner(System.in, StandardCharsets.UTF_8)
+                : new Scanner(console.reader())) {
             new TaxiConsole(input, output, passengers, rides, reports).run();
         }
     }

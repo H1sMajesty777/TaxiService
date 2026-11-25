@@ -25,6 +25,10 @@
             "label": "Такси: консоль",
             "type": "shell",
             "command": "mvn -f kr-01/pom.xml -q compile exec:java",
+            "windows": {
+                "command": "& ./scripts/Start-TaxiConsole.ps1",
+                "options": {"shell": {"executable": "powershell.exe", "args": ["-NoProfile", "-Command"]}}
+            },
             "problemMatcher": []
         },
         {
